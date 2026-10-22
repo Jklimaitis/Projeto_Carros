@@ -8,4 +8,5 @@ media/
 .env
 .env.*
 !.env.example
+GEMINI.md
 anotacoes2.txt
