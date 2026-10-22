@@ -1,5 +1,5 @@
 from django import forms
-from cars.models import Brand, Car
+from cars.models import Car
 
 
 class CarModelForm(forms.ModelForm):
@@ -9,12 +9,15 @@ class CarModelForm(forms.ModelForm):
 
     def clean_value(self):
         value = self.cleaned_data.get('value')
-        if value is None or value < 20000:
-            self.add_error('value', 'Valor mínimo do carro deve ser de R$20.000')
+        if value is None or value < 10000:
+            self.add_error('value', 'Valor mínimo do carro deve ser de R$10.000')
         return value
 
     def clean_factory_year(self):
         factory_year = self.cleaned_data.get('factory_year')
-        if factory_year is None or factory_year < 1975:
-            self.add_error('factory_year', 'Não é possível cadastrar carros fabricados antes de 1975')
+        if factory_year is None or factory_year < 1900:
+            self.add_error(
+                'factory_year',
+                'Não é possível cadastrar carros fabricados antes de 1900'
+                )
         return factory_year
